@@ -40,7 +40,11 @@ parts:
     source-branch: master
     build-packages:
       - pkg-config
+      - cmake
       - libasound2-dev
+    stage-packages:
+      - libasound2
+      - libasound2-plugins
 
   game-data:
     after: [doukutsu-rs]
@@ -57,6 +61,7 @@ apps:
     plugs:
       - home
       - audio-playback
+      - alsa
       - desktop
       - desktop-legacy
       - wayland
