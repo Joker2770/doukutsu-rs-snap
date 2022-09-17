@@ -36,6 +36,8 @@ parts:
     source: https://github.com/doukutsu-rs/doukutsu-rs.git
     source-type: git
     source-branch: master
+    build-packages:
+      - pkg-config
 
   game-data:
     plugin: dump
