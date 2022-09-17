@@ -67,11 +67,9 @@ parts:
       - libasound2
       - libasound2-plugins
       - libsdl2-2.0-0
-      - libmodplug1
-      - libopusfile0
       - libpulse0
-      - libsndfile1
       - libgl1
+      - libgl1-mesa-dri
   game-data:
     after: [doukutsu-rs]
     plugin: dump
