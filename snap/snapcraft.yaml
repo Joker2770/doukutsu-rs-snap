@@ -70,11 +70,8 @@ parts:
       - g++
       - cmake
       - make
-      - libasound2-dev
       - libsdl2-dev
     stage-packages:
-      - libasound2
-      - libasound2-plugins
       - libsdl2-2.0-0
       - libmodplug1
       - libopusfile0
