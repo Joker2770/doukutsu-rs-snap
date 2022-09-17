@@ -28,7 +28,7 @@ description: |
 
   _More build details: https://github.com/Joker2770/doukutsu-rs-snap.git_
 
-base: core18
+base: core20
 grade: stable
 confinement: strict
 
