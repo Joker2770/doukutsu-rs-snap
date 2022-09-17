@@ -32,8 +32,25 @@ base: core20
 grade: stable
 confinement: strict
 
+layout:
+  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
+    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib
+  /usr/share/alsa:
+    bind: $SNAP/usr/share/alsa
+
 parts:
+  alsa-mixin:
+    plugin: dump
+    source: https://github.com/diddlesnaps/snapcraft-alsa.git
+    source-subdir: snapcraft-assets
+    build-packages:
+      - libasound2-dev
+    stage-packages:
+      - libasound2
+      - libasound2-plugins
+      - yad
   doukutsu-rs:
+    after: [alsa-mixin]
     plugin: rust
     source: https://github.com/doukutsu-rs/doukutsu-rs.git
     source-type: git
@@ -54,7 +71,11 @@ parts:
       - libsdl2-2.0-0
       - libsdl2-ttf-2.0-0
       - libsdl2-mixer-2.0-0
-
+      - libmodplug1
+      - libopusfile0
+      - libpulse0
+      - libsndfile1
+      - libgl1
   game-data:
     after: [doukutsu-rs]
     plugin: dump
@@ -67,6 +88,9 @@ parts:
 apps:
   doukutsu-rs:
     command: bin/doukutsu-rs
+    environment:
+      # pulseaudio
+      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio"
     plugs:
       - home
       - audio-playback
