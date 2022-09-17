@@ -26,6 +26,8 @@ summary: A fully playable re-implementation of Cave Story engine written in Rust
 description: |
   A fully playable re-implementation of Cave Story (Doukutsu Monogatari) engine written in Rust.
 
+  _More build details: https://github.com/Joker2770/doukutsu-rs-snap.git_
+
 base: core18
 grade: stable
 confinement: strict
@@ -38,8 +40,10 @@ parts:
     source-branch: master
     build-packages:
       - pkg-config
+      - libasound2-dev
 
   game-data:
+    after: [doukutsu-rs]
     plugin: dump
     source: https://github.com/doukutsu-rs/game-data.git
     source-type: git
