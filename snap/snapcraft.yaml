@@ -48,3 +48,14 @@ parts:
 apps:
   doukutsu-rs:
     command: bin/doukutsu-rs
+    plugs:
+      - home
+      - audio-playback
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - x11
+      - opengl
+      - removable-media
+      - joystick
