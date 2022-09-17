@@ -40,11 +40,20 @@ parts:
     source-branch: master
     build-packages:
       - pkg-config
+      - gcc
+      - g++
       - cmake
+      - make
       - libasound2-dev
+      - libsdl2-dev
+      - libsdl2-ttf-dev
+      - libsdl2-mixer-dev
     stage-packages:
       - libasound2
       - libasound2-plugins
+      - libsdl2-2.0-0
+      - libsdl2-ttf-2.0-0
+      - libsdl2-mixer-2.0-0
 
   game-data:
     after: [doukutsu-rs]
