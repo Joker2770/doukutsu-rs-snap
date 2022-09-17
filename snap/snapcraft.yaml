@@ -31,6 +31,10 @@ description: |
 base: core20
 grade: stable
 confinement: strict
+architectures:
+  - build-on: amd64
+  - build-on: armhf
+  - build-on: arm64
 
 layout:
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
@@ -67,7 +71,10 @@ parts:
       - libasound2
       - libasound2-plugins
       - libsdl2-2.0-0
+      - libmodplug1
+      - libopusfile0
       - libpulse0
+      - libsndfile1
       - libgl1
       - libgl1-mesa-dri
       - libglu1-mesa
