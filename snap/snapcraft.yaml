@@ -35,6 +35,8 @@ confinement: strict
 layout:
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
     bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib
+  /usr/lib/dri:
+    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/dri
   /usr/share/alsa:
     bind: $SNAP/usr/share/alsa
 
@@ -89,6 +91,7 @@ apps:
       - home
       - audio-playback
       - alsa
+      - pulseaudio
       - desktop
       - desktop-legacy
       - wayland
