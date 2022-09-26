@@ -32,9 +32,8 @@ base: core20
 grade: stable
 confinement: strict
 architectures:
-  - build-on: amd64
-  - build-on: armhf
-  - build-on: arm64
+  - build-on: ppc64el
+  - build-on: s390x
 
 layout:
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
@@ -43,7 +42,16 @@ layout:
     bind: $SNAP/usr/share/alsa
 
 parts:
+  desktop-glib-only:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: glib-only
+    plugin: make
+    build-packages:
+      - libglib2.0-dev
+    stage-packages:
+      - libglib2.0-bin
   alsa-mixin:
+    after: [desktop-glib-only]
     plugin: dump
     source: https://github.com/diddlesnaps/snapcraft-alsa.git
     source-subdir: snapcraft-assets
@@ -87,10 +95,9 @@ parts:
 apps:
   doukutsu-rs:
     command: bin/doukutsu-rs
-    command-chain: ["snap/command-chain/alsa-launch"]
+    command-chain: ["snap/command-chain/alsa-launch", "bin/desktop-launch"]
     environment:
       LD_LIBRARY_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio/
-    extensions: [gnome-3-38]
     plugs:
       - home
       - audio-playback
