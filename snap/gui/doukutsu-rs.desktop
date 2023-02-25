@@ -1,5 +1,5 @@
 [Desktop Entry]
-Version=0.99.0
+Version=0.100.0
 Encoding=UTF-8
 Name=doukutsu-rs
 Comment=A faithful and open-source remake of Cave Story engine written in Rust
