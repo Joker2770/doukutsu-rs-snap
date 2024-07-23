@@ -89,8 +89,8 @@ apps:
     command: bin/doukutsu-rs
     command-chain: ["snap/command-chain/alsa-launch"]
     environment:
-      LD_LIBRARY_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio/
-    extensions: [gnome-3-38]
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio:$SNAP/usr/local/lib
+    # extensions: [gnome-3-38]
     plugs:
       - home
       - audio-playback
