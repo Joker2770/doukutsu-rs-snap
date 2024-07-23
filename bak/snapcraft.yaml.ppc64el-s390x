@@ -74,6 +74,9 @@ parts:
       - cmake
       - make
       - libsdl2-dev
+      - libasound2-dev
+      - libudev-dev
+      - libgl1-mesa-dev
     stage-packages:
       - libsdl2-2.0-0
       - libmodplug1
