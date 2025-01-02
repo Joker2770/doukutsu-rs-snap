@@ -69,10 +69,10 @@ plugs:
         interface: content
         target: $SNAP/gnome-platform
         default-provider: gnome-46-2404
-    gpu-2404:
-        interface: content
-        target: $SNAP/gpu-2404
-        default-provider: mesa-24040
+    # gpu-2404:
+    #     interface: content
+    #     target: $SNAP/gpu-2404
+    #     default-provider: mesa-24040
 
 parts:
   alsa-mixin:
