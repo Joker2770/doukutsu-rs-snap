@@ -28,19 +28,51 @@ description: |
 
   _More build details: https://github.com/Joker2770/doukutsu-rs-snap.git_
 
-base: core20
+base: core24
 grade: stable
 confinement: strict
-architectures:
-  - build-on: amd64
-  - build-on: armhf
-  - build-on: arm64
 
 layout:
+  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/webkit2gtk-4.0:
+    bind: $SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/webkit2gtk-4.0
+  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/webkit2gtk-4.1:
+    bind: $SNAP/gnome-platform/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/webkit2gtk-4.1
+  /usr/share/xml/iso-codes:
+    bind: $SNAP/gnome-platform/usr/share/xml/iso-codes
+  /usr/share/libdrm:
+    bind: $SNAP/gpu-2404/libdrm
+  /usr/share/drirc.d:
+    symlink: $SNAP/gpu-2404/drirc.d
+  /usr/share/X11/XErrorDB:
+    symlink: $SNAP/gpu-2404/X11/XErrorDB
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
     bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib
   /usr/share/alsa:
     bind: $SNAP/usr/share/alsa
+
+plugs:
+    desktop:
+        mount-host-font-cache: false
+    gtk-3-themes:
+        interface: content
+        target: $SNAP/data-dir/themes
+        default-provider: gtk-common-themes
+    icon-themes:
+        interface: content
+        target: $SNAP/data-dir/icons
+        default-provider: gtk-common-themes
+    sound-themes:
+        interface: content
+        target: $SNAP/data-dir/sounds
+        default-provider: gtk-common-themes
+    gnome-46-2404:
+        interface: content
+        target: $SNAP/gnome-platform
+        default-provider: gnome-46-2404
+    gpu-2404:
+        interface: content
+        target: $SNAP/gpu-2404
+        default-provider: mesa-24040
 
 parts:
   alsa-mixin:
@@ -94,7 +126,9 @@ apps:
     command-chain: ["snap/command-chain/alsa-launch"]
     environment:
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio:$SNAP/usr/local/lib
-    # extensions: [gnome-3-38]
+      SNAP_DESKTOP_RUNTIME: $SNAP/gnome-platform
+      GTK_USE_PORTAL: '1'
+    extensions: [gnome]
     plugs:
       - home
       - audio-playback
@@ -108,3 +142,5 @@ apps:
       - opengl
       - removable-media
       - joystick
+      - gsettings
+      - mount-observe
