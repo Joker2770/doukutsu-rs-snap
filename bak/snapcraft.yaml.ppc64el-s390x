@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2022-2023 Joker2770
+# Copyright (c) 2022-2025 Joker2770
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 name: doukutsu-rs
-version: 0.100.0-beta5
+version: 0.101.0-beta6
 summary: A fully playable re-implementation of Cave Story engine written in Rust.
 description: |
   A fully playable re-implementation of Cave Story (Doukutsu Monogatari) engine written in Rust.
@@ -64,6 +64,7 @@ parts:
   doukutsu-rs:
     after: [alsa-mixin]
     plugin: rust
+    rust-features: ["backend-sdl"]
     source: https://github.com/doukutsu-rs/doukutsu-rs.git
     source-type: git
     source-branch: master
