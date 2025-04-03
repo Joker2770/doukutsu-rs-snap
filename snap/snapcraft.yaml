@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 name: doukutsu-rs
-version: 0.101.0-beta6
+version: 0.102.0-beta7
 summary: A fully playable re-implementation of Cave Story engine written in Rust.
 description: |
   A fully playable re-implementation of Cave Story (Doukutsu Monogatari) engine written in Rust.
